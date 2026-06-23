@@ -79,28 +79,67 @@ function Landing() {
       </header>
 
       {/* Hero intro */}
-      <section className="mx-auto max-w-3xl px-4 pt-6 pb-4 text-center sm:pt-10">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold text-primary">
-          <Sparkles className="h-3 w-3" />
-          عروض حصرية لعملاء البنك الأهلي المصري
-        </span>
-        <h1 className="mt-3 text-xl font-extrabold leading-tight text-foreground sm:text-3xl">
-          ساعة ذكية مجاناً، تفعيل فوري لبطاقتك،
-          <br className="hidden sm:block" />
-          <span className="text-primary"> وفرصة لربح جوائز قيّمة</span>
-        </h1>
-        <p className="mx-auto mt-2.5 max-w-xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          باقة عروض مختارة من البنك الأهلي المصري: فعّل بطاقتك الجديدة، اختر لون ساعتك
-          الذكية، وادخل السحوبات الشهرية على الجوائز الكبرى. كل ما عليك اختيار العرض
-          الذي يناسبك من الأسفل.
-        </p>
+      <section className="relative overflow-hidden bg-primary px-4 pt-10 pb-12 text-center sm:pt-16 sm:pb-16">
+        <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '24px 24px'}} />
+        <div className="relative mx-auto max-w-3xl">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-[11px] font-bold text-white backdrop-blur-sm">
+            <Sparkles className="h-3 w-3" />
+            عروض حصرية لعملاء البنك الأهلي المصري
+          </span>
+          <h1 className="mt-5 text-2xl font-extrabold leading-tight text-white sm:text-4xl">
+            ساعة ذكية مجاناً، تفعيل فوري لبطاقتك،
+            <br className="hidden sm:block" />
+            <span className="text-white/90"> وفرصة لربح جوائز قيّمة</span>
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+            باقة عروض مختارة من البنك الأهلي المصري: فعّل بطاقتك الجديدة، اختر لون ساعتك
+            الذكية المجانية، وادخل السحوبات الشهرية على الجوائز الكبرى. كل ما عليك اختيار العرض
+            الذي يناسبك من الأسفل.
+          </p>
 
-        {/* Quick perks */}
-        <ul className="mx-auto mt-5 grid max-w-md grid-cols-3 gap-2 text-[10px] sm:text-xs">
-          <Perk icon={<Watch className="h-3.5 w-3.5" />} label="ساعة مجاناً" />
-          <Perk icon={<CreditCard className="h-3.5 w-3.5" />} label="تفعيل آمن" />
-          <Perk icon={<Gift className="h-3.5 w-3.5" />} label="سحوبات شهرية" />
-        </ul>
+          <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link
+              to="/watches"
+              className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-extrabold text-primary shadow-lg transition-transform hover:scale-105"
+            >
+              <Watch className="h-4 w-4" />
+              ابدأ الآن — اختر ساعتك
+            </Link>
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              <CreditCard className="h-4 w-4" />
+              فعّل بطاقتك
+            </Link>
+          </div>
+
+          {/* Quick perks */}
+          <ul className="mx-auto mt-8 grid max-w-lg grid-cols-3 gap-3 text-[10px] sm:text-xs">
+            <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
+                <Watch className="h-3.5 w-3.5" />
+              </span>
+              ساعة مجاناً
+            </li>
+            <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
+                <ShieldCheck className="h-3.5 w-3.5" />
+              </span>
+              تفعيل آمن
+            </li>
+            <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
+                <Trophy className="h-3.5 w-3.5" />
+              </span>
+              سحوبات شهرية
+            </li>
+          </ul>
+        </div>
+
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
+          <ChevronDown className="h-5 w-5" />
+        </div>
       </section>
 
       {/* Cards grid */}
