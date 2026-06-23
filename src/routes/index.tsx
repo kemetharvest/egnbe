@@ -1,15 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Globe,
-  ArrowLeft,
-  Star,
-} from "lucide-react";
+import { Globe, ArrowLeft, Sparkles, Gift, CreditCard, Watch } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import watchGold from "@/assets/watch-gold.png";
 import goldPrize from "@/assets/gold-prize.jpg";
 import nbeBuilding from "@/assets/nbe-building-real.jpg.asset.json";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,7 +33,7 @@ const cards: CardItem[] = [
   {
     badge: "عرض حصري",
     title: "الساعة الذكية",
-    desc: "احصل على ساعتك الذكية مجاناً — عرض حصري ومحدود لعملاء البنك الأهلي المصري.",
+    desc: "احصل على ساعتك الذكية مجاناً — عرض محدود لعملاء البنك الأهلي المصري.",
     image: watchGold,
     cta: "اطلب الآن",
     to: "/watches",
@@ -46,7 +41,7 @@ const cards: CardItem[] = [
   {
     badge: "آمن وسريع",
     title: "تفعيل البطاقة",
-    desc: "فعّل بطاقتك البنكية في ثوانٍ واستمتع بتجربة دفع رقمية سلسة وآمنة بالكامل.",
+    desc: "فعّل بطاقتك في ثوانٍ واستمتع بتجربة دفع رقمية سلسة وآمنة.",
     image: nbeBuilding.url,
     cta: "سجّل الآن",
     to: "/login",
@@ -54,7 +49,7 @@ const cards: CardItem[] = [
   {
     badge: "السحب الكبير",
     title: "الجائزة الكبرى",
-    desc: "ادخل السحب على الجائزة الكبرى واربح مبالغ نقدية ضخمة وسيارة فاخرة.",
+    desc: "ادخل السحب واربح مبالغ نقدية ضخمة وسيارة فاخرة.",
     image: goldPrize,
     cta: "شارك الآن",
     to: "/login",
@@ -66,12 +61,12 @@ function Landing() {
   return (
     <div dir="rtl" className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="flex items-center justify-between border-b border-border px-6 py-4">
+      <header className="sticky top-0 z-20 flex items-center justify-between border-b border-border bg-background/90 px-4 py-3 backdrop-blur sm:px-6">
         <Link
           to="/login"
-          className="flex items-center gap-2 text-sm font-semibold text-foreground"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground sm:text-sm"
         >
-          <Globe className="h-5 w-5 text-muted-foreground" />
+          <Globe className="h-4 w-4 text-muted-foreground" />
           English
         </Link>
         <img
@@ -79,65 +74,99 @@ function Landing() {
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}
-          className="h-9 w-auto object-contain md:h-11"
+          className="h-7 w-auto object-contain sm:h-9"
         />
       </header>
 
-      {/* Cards stack */}
-      <section className="mx-auto max-w-2xl space-y-8 px-4 py-8">
-        {cards.map((c) => (
-          <article
-            key={c.title}
-            className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm"
-          >
-            <div className="relative px-6 pt-8">
-              <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[11px] font-bold text-primary-foreground shadow-md">
-                <Star className="h-3 w-3 fill-current" />
-                {c.badge}
-              </span>
-              <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl">
+      {/* Hero intro */}
+      <section className="mx-auto max-w-3xl px-4 pt-6 pb-4 text-center sm:pt-10">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold text-primary">
+          <Sparkles className="h-3 w-3" />
+          عروض حصرية لعملاء البنك الأهلي المصري
+        </span>
+        <h1 className="mt-3 text-xl font-extrabold leading-tight text-foreground sm:text-3xl">
+          ساعة ذكية مجاناً، تفعيل فوري لبطاقتك،
+          <br className="hidden sm:block" />
+          <span className="text-primary"> وفرصة لربح جوائز قيّمة</span>
+        </h1>
+        <p className="mx-auto mt-2.5 max-w-xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
+          باقة عروض مختارة من البنك الأهلي المصري: فعّل بطاقتك الجديدة، اختر لون ساعتك
+          الذكية، وادخل السحوبات الشهرية على الجوائز الكبرى. كل ما عليك اختيار العرض
+          الذي يناسبك من الأسفل.
+        </p>
+
+        {/* Quick perks */}
+        <ul className="mx-auto mt-5 grid max-w-md grid-cols-3 gap-2 text-[10px] sm:text-xs">
+          <Perk icon={<Watch className="h-3.5 w-3.5" />} label="ساعة مجاناً" />
+          <Perk icon={<CreditCard className="h-3.5 w-3.5" />} label="تفعيل آمن" />
+          <Perk icon={<Gift className="h-3.5 w-3.5" />} label="سحوبات شهرية" />
+        </ul>
+      </section>
+
+      {/* Cards grid */}
+      <section className="mx-auto max-w-5xl px-4 pb-10 pt-2 sm:pb-16">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          {cards.map((c) => (
+            <article
+              key={c.title}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+            >
+              <div className="relative aspect-[5/3] overflow-hidden bg-secondary">
                 <img
                   src={c.image}
                   alt={c.title}
-                  width={1024}
-                  height={1024}
                   loading="lazy"
-                  className="h-full w-full object-contain"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold text-primary-foreground shadow">
+                  <Sparkles className="h-2.5 w-2.5" />
+                  {c.badge}
+                </span>
               </div>
-            </div>
-            <div className="px-6 pt-6 pb-2 text-center">
-              <h2 className="text-2xl font-extrabold text-foreground">{c.title}</h2>
-              <p className="mx-auto mt-3 max-w-md text-sm leading-loose text-muted-foreground">
-                {c.desc}
-              </p>
-            </div>
-            <div className="px-6 pb-6 pt-4">
-              <Link
-                to={c.to}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-primary py-4 text-sm font-bold text-primary-foreground shadow-md transition-colors hover:bg-primary/90"
-              >
-                {c.cta}
-                <ArrowLeft className="h-4 w-4" />
-              </Link>
-            </div>
-          </article>
-        ))}
+              <div className="flex flex-1 flex-col px-3.5 py-3">
+                <h2 className="text-sm font-extrabold text-foreground sm:text-base">
+                  {c.title}
+                </h2>
+                <p className="mt-1 line-clamp-2 flex-1 text-[11px] leading-relaxed text-muted-foreground sm:text-xs">
+                  {c.desc}
+                </p>
+                <Link
+                  to={c.to}
+                  className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-xs font-bold text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  {c.cta}
+                  <ArrowLeft className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border px-6 py-8 text-center">
+      <footer className="border-t border-border px-4 py-6 text-center">
         <img
           src={nbeLogo.url}
           alt="البنك الأهلي المصري"
           width={1920}
           height={520}
-          className="mx-auto h-8 w-auto object-contain"
+          className="mx-auto h-6 w-auto object-contain"
         />
-        <p className="mt-3 text-xs text-muted-foreground">
+        <p className="mt-2 text-[11px] text-muted-foreground">
           © {new Date().getFullYear()} البنك الأهلي المصري. جميع الحقوق محفوظة.
         </p>
       </footer>
     </div>
+  );
+}
+
+function Perk({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return (
+    <li className="flex flex-col items-center gap-1 rounded-xl bg-secondary px-2 py-2 font-semibold text-secondary-foreground">
+      <span className="grid h-6 w-6 place-items-center rounded-full bg-primary/10 text-primary">
+        {icon}
+      </span>
+      {label}
+    </li>
   );
 }
