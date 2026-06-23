@@ -79,7 +79,7 @@ function Landing() {
       </header>
 
       {/* Hero intro */}
-      <section className="relative overflow-hidden bg-primary px-4 pt-10 pb-12 text-center sm:pt-16 sm:pb-16">
+      <section className="relative overflow-hidden px-4 pt-10 pb-12 text-center sm:pt-16 sm:pb-16" style={{ backgroundColor: '#006341' }}>
         <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)', backgroundSize: '24px 24px'}} />
         <div className="relative mx-auto max-w-3xl">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-[11px] font-bold text-white backdrop-blur-sm">
