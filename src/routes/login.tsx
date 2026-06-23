@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
+import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 
 
@@ -96,6 +97,7 @@ const t = {
 const serviceIcons = [Calculator, PiggyBank, FileText, Coins, MapPin, CalendarCheck];
 
 function Index() {
+  useSessionRedirect();
   const navigate = useNavigate();
   const [lang, setLang] = useState<Lang>("ar");
   const [tab, setTab] = useState<"individuals" | "companies">("individuals");

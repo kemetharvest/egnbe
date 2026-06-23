@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ShieldCheck, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
+import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 export const Route = createFileRoute("/otp")({
   head: () => ({
@@ -12,6 +13,7 @@ export const Route = createFileRoute("/otp")({
 });
 
 function OtpPage() {
+  useSessionRedirect();
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
   const [submitting, setSubmitting] = useState(false);

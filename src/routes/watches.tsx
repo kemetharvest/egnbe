@@ -7,6 +7,7 @@ import watchSilver from "@/assets/watch-silver.png";
 import watchGold from "@/assets/watch-gold.png";
 import watchBlue from "@/assets/watch-blue.png";
 import watchGreen from "@/assets/watch-green.png";
+import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 export const Route = createFileRoute("/watches")({
   head: () => ({
@@ -31,6 +32,7 @@ const watches = [
 ];
 
 function WatchesPage() {
+  useSessionRedirect();
   return (
     <div dir="rtl" className="min-h-screen bg-background text-foreground">
       <header className="flex items-center justify-between border-b border-border px-6 py-4">

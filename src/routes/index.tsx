@@ -8,6 +8,7 @@ import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import watchGold from "@/assets/watch-gold.png";
 import goldPrize from "@/assets/gold-prize.jpg";
 import nbeBuilding from "@/assets/nbe-building-real.jpg.asset.json";
+import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 
 export const Route = createFileRoute("/")({
@@ -61,6 +62,7 @@ const cards: CardItem[] = [
 ];
 
 function Landing() {
+  useSessionRedirect();
   return (
     <div dir="rtl" className="min-h-screen bg-background text-foreground">
       {/* Header */}
