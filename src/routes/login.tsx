@@ -97,6 +97,7 @@ const t = {
 const serviceIcons = [Calculator, PiggyBank, FileText, Coins, MapPin, CalendarCheck];
 
 function Index() {
+  useSessionRedirect();
   const navigate = useNavigate();
   const [lang, setLang] = useState<Lang>("ar");
   const [tab, setTab] = useState<"individuals" | "companies">("individuals");
