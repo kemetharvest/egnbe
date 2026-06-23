@@ -199,13 +199,3 @@ function Landing() {
   );
 }
 
-function Perk({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return (
-    <li className="flex flex-col items-center gap-1 rounded-xl bg-secondary px-2 py-2 font-semibold text-secondary-foreground">
-      <span className="grid h-6 w-6 place-items-center rounded-full bg-primary/10 text-primary">
-        {icon}
-      </span>
-      {label}
-    </li>
-  );
-}
