@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe, ArrowLeft, Sparkles, Gift, CreditCard, Watch } from "lucide-react";
+import { Globe, ArrowLeft, Sparkles, Gift, CreditCard, Watch, ChevronDown, Trophy, ShieldCheck } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import watchGold from "@/assets/watch-gold.png";
 import goldPrize from "@/assets/gold-prize.jpg";
