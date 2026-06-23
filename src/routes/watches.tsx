@@ -53,15 +53,39 @@ function WatchesPage() {
         />
       </header>
 
-      <section className="mx-auto max-w-5xl px-4 pt-10 pb-4 text-center">
+      {/* Welcome banner with NBE badge logo */}
+      <section className="mx-auto max-w-5xl px-4 pt-6">
+        <div className="flex flex-col items-center rounded-2xl border border-border bg-card p-5 text-center shadow-sm sm:flex-row sm:gap-6 sm:p-6 sm:text-right">
+          <div className="flex-shrink-0">
+            <img
+              src={nbeBadge.url}
+              alt="شعار البنك الأهلي المصري"
+              width={200}
+              height={200}
+              className="h-20 w-auto object-contain sm:h-24"
+            />
+          </div>
+          <div className="mt-3 flex-1 sm:mt-0">
+            <h2 className="text-lg font-extrabold text-foreground sm:text-xl">
+              هدية البنك الأهلي المصري لعملائنا المميزين
+            </h2>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+              بمناسبة مرور 125 عاماً على تأسيس البنك الأهلي المصري، نقدم لكم ساعة ذكية مجاناً
+              عند تفعيل بطاقتك. اختر لونك المفضّل من الأسفل واستمتع بتجربة رقمية متكاملة.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 pt-8 pb-4 text-center">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[11px] font-bold text-primary-foreground shadow-md">
           <Star className="h-3 w-3 fill-current" />
           عرض حصري
         </span>
-        <h1 className="mt-5 text-3xl font-extrabold leading-tight text-foreground md:text-4xl">
+        <h1 className="mt-4 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
           اختر لون <span className="text-primary">ساعتك الذكية</span>
         </h1>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-loose text-muted-foreground">
+        <p className="mx-auto mt-2 max-w-md text-sm leading-loose text-muted-foreground">
           ٦ ألوان مميزة — اختر اللون المفضّل لك واستلم ساعتك مجاناً.
         </p>
       </section>
