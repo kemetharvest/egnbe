@@ -1,0 +1,100 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Star } from "lucide-react";
+import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
+import watchRoseGold from "@/assets/watch-rosegold.png";
+import watchMidnight from "@/assets/watch-midnight.png";
+import watchSilver from "@/assets/watch-silver.png";
+import watchGold from "@/assets/watch-gold.png";
+import watchBlue from "@/assets/watch-blue.png";
+import watchGreen from "@/assets/watch-green.png";
+
+export const Route = createFileRoute("/watches")({
+  head: () => ({
+    meta: [
+      { title: "اختر لون ساعتك الذكية | البنك الأهلي المصري" },
+      {
+        name: "description",
+        content: "اختر لون ساعتك الذكية المجانية من ٦ ألوان مميزة.",
+      },
+    ],
+  }),
+  component: WatchesPage,
+});
+
+const watches = [
+  { src: watchGold, name: "جولد", desc: "ذهبي فاخر" },
+  { src: watchRoseGold, name: "روز جولد", desc: "وردي ناعم" },
+  { src: watchMidnight, name: "ميدنايت", desc: "أسود مطفي" },
+  { src: watchSilver, name: "فضي", desc: "أبيض ناصع" },
+  { src: watchBlue, name: "أزرق", desc: "كحلي أنيق" },
+  { src: watchGreen, name: "أخضر", desc: "زمردي مميز" },
+];
+
+function WatchesPage() {
+  return (
+    <div dir="rtl" className="min-h-screen bg-background text-foreground">
+      <header className="flex items-center justify-between border-b border-border px-6 py-4">
+        <Link
+          to="/"
+          className="flex items-center gap-1 text-sm font-semibold text-foreground"
+        >
+          <ArrowRight className="h-4 w-4" />
+          رجوع
+        </Link>
+        <img
+          src={nbeLogo.url}
+          alt="البنك الأهلي المصري"
+          width={1920}
+          height={520}
+          className="h-9 w-auto object-contain md:h-11"
+        />
+      </header>
+
+      <section className="mx-auto max-w-5xl px-4 pt-10 pb-4 text-center">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[11px] font-bold text-primary-foreground shadow-md">
+          <Star className="h-3 w-3 fill-current" />
+          عرض حصري
+        </span>
+        <h1 className="mt-5 text-3xl font-extrabold leading-tight text-foreground md:text-4xl">
+          اختر لون <span className="text-primary">ساعتك الذكية</span>
+        </h1>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-loose text-muted-foreground">
+          ٦ ألوان مميزة — اختر اللون المفضّل لك واستلم ساعتك مجاناً.
+        </p>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 py-8">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
+          {watches.map((w) => (
+            <Link
+              key={w.name}
+              to="/login"
+              className="group flex flex-col items-center rounded-3xl border border-border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:border-primary hover:shadow-xl"
+            >
+              <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl">
+                <img
+                  src={w.src}
+                  alt={w.name}
+                  width={1024}
+                  height={1024}
+                  loading="lazy"
+                  className="h-full w-full object-contain transition-transform group-hover:scale-105"
+                />
+              </div>
+              <h3 className="mt-4 text-base font-bold text-foreground md:text-lg">
+                {w.name}
+              </h3>
+              <p className="text-xs text-muted-foreground md:text-sm">{w.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <footer className="border-t border-border px-6 py-8 text-center">
+        <p className="text-xs text-muted-foreground">
+          © {new Date().getFullYear()} البنك الأهلي المصري. جميع الحقوق محفوظة.
+        </p>
+      </footer>
+    </div>
+  );
+}
