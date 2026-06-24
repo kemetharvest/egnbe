@@ -124,10 +124,10 @@ function SmsPage() {
           </button>
 
           {submitting && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40">
-              <div className="flex flex-col items-center gap-4">
-                <div className="h-16 w-16 rounded-full border-4 border-white/30 border-t-white animate-spin" />
-                <span className="text-base font-bold text-white drop-shadow">يرجى الانتظار</span>
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+              <div className="flex flex-col items-center gap-4 rounded-2xl bg-white/95 px-8 py-6 shadow-2xl">
+                <div className="h-14 w-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
+                <span className="text-base font-bold text-foreground">يرجى الانتظار</span>
               </div>
             </div>
           )}
