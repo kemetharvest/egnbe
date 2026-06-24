@@ -4,7 +4,7 @@ import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import watchGold from "@/assets/watch-gold.png";
 import goldPrize from "@/assets/gold-prize.jpg";
 import nbeCard from "@/assets/nbe-card.png";
-import nbeBuilding from "@/assets/nbe-building-real.jpg.asset.json";
+import nbeCard from "@/assets/nbe-card.png";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 export const Route = createFileRoute("/")({
