@@ -115,9 +115,7 @@ function OtpPage() {
 
           <div className="mt-8 flex flex-col items-center">
             <span className="text-base font-medium text-muted-foreground">Verification Code</span>
-            {submitting && (
-              <div className="mt-4 h-10 w-10 rounded-full border-[3px] border-muted border-t-muted-foreground/60 animate-spin" />
-            )}
+            <div className="mt-4 h-12 w-12 animate-spin rounded-full border-[5px] border-muted border-t-muted-foreground/60" />
           </div>
 
           <div className="mt-6">

