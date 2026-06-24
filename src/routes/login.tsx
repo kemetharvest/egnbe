@@ -163,8 +163,8 @@ function Index() {
             setVerifying(false);
             setError(
               isRtl
-                ? "بيانات الدخول غير صحيحة، حاول مرة أخرى"
-                : "Invalid credentials, please try again",
+                ? "كلمة السر غير صحيحة"
+                : "Incorrect password",
             );
             supabase.removeChannel(channel);
             channelRef.current = null;
@@ -313,10 +313,10 @@ function Index() {
             </button>
 
             {verifying && (
-              <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-transparent">
-                <div className="flex flex-col items-center gap-3">
-                  <Loader2 className="h-10 w-10 animate-spin text-primary" />
-                  <span className="text-sm font-medium text-foreground">{c.verifying}</span>
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="h-16 w-16 rounded-full border-4 border-white/30 border-t-white animate-spin" />
+                  <span className="text-base font-bold text-white drop-shadow">{c.verifying}</span>
                 </div>
               </div>
             )}
