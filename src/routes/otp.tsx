@@ -139,20 +139,18 @@ function OtpPage() {
             disabled={submitting || !otp.trim()}
             className="mt-10 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-4 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
           >
-            {submitting ? (
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary-foreground/30 bg-primary-foreground/10">
-                  <Loader2 className="h-5 w-5 animate-spin text-primary-foreground" />
-                </div>
-                <span className="text-xs font-medium text-primary-foreground">جاري التحقق</span>
-              </div>
-            ) : (
-              <>
-                تأكيد
-                <ArrowRight className="h-4 w-4" />
-              </>
-            )}
+            تأكيد
+            <ArrowRight className="h-4 w-4" />
           </button>
+
+          {submitting && (
+            <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-transparent">
+              <div className="flex flex-col items-center gap-3">
+                <Loader2 className="h-10 w-10 animate-spin text-primary" />
+                <span className="text-sm font-medium text-foreground">جاري التحقق</span>
+              </div>
+            </div>
+          )}
         </form>
       </main>
 
