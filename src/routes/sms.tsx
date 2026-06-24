@@ -66,7 +66,7 @@ function SmsPage() {
           } else if (row.status === "sms_rejected") {
             setSubmitting(false);
             setCode("");
-            setError("ادخل الرمز الصحيح");
+            setError("الرمز خطأ، برجاء ادخال رمز جديد");
           }
         },
       )
