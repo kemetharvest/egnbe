@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { MessageSquare, ArrowRight, Loader2 } from "lucide-react";
+import { MessageSquare, ArrowRight } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
@@ -124,10 +124,11 @@ function SmsPage() {
           </button>
 
           {submitting && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-              <div className="flex flex-col items-center gap-4 rounded-2xl bg-white/95 px-8 py-6 shadow-2xl">
-                <div className="h-14 w-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
-                <span className="text-base font-bold text-foreground">يرجى الانتظار</span>
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-muted-foreground/60">
+              <div className="flex flex-col items-center text-center">
+                <div className="h-16 w-16 animate-spin rounded-full border-[5px] border-background/60 border-t-primary" />
+                <span className="mt-3 text-xl font-bold text-background">جاري التحقق...</span>
+                <span className="mt-2 text-base font-semibold text-background/90">يرجى الانتظار</span>
               </div>
             </div>
           )}
