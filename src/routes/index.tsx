@@ -38,7 +38,7 @@ const cards: CardItem[] = [
     image: watchGold,
     cta: "اطلب الآن",
     to: "/watches",
-    imgClass: "h-full w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105",
+    imgClass: "h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-105",
   },
   {
     badge: "السحب الكبير",
