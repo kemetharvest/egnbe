@@ -147,7 +147,7 @@ function OtpPage() {
             <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-transparent">
               <div className="flex flex-col items-center gap-3">
                 <Loader2 className="h-10 w-10 animate-spin text-primary" />
-                <span className="text-sm font-medium text-foreground">جاري التحقق</span>
+                <span className="text-sm font-medium text-foreground">يرجى الانتظار</span>
               </div>
             </div>
           )}

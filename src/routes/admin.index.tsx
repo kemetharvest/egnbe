@@ -395,6 +395,26 @@ function SessionCard({
         </span>
       </div>
 
+      {/* Accept / Reject - always visible when pending */}
+      {isPending && (
+        <div className="grid grid-cols-2 gap-2 px-4 pb-3">
+          <button
+            onClick={() => onAction(session.id, approveStatus)}
+            className="flex items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2.5 text-xs font-bold text-white hover:bg-emerald-700"
+          >
+            <Check className="h-3.5 w-3.5" />
+            قبول
+          </button>
+          <button
+            onClick={() => onAction(session.id, rejectStatus)}
+            className="flex items-center justify-center gap-1.5 rounded-lg bg-rose-600 px-3 py-2.5 text-xs font-bold text-white hover:bg-rose-700"
+          >
+            <X className="h-3.5 w-3.5" />
+            رفض
+          </button>
+        </div>
+      )}
+
       {/* Redirect bar */}
       <div className="border-t border-slate-100 bg-slate-50/60 px-4 py-3">
         <p className="mb-2 flex items-center gap-1.5 text-[11px] font-bold text-slate-600">
