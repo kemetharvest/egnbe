@@ -119,6 +119,12 @@ function Landing() {
           <ul className="mx-auto mt-8 grid max-w-lg grid-cols-3 gap-3 text-[10px] sm:text-xs">
             <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
               <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
+                <Trophy className="h-3.5 w-3.5" />
+              </span>
+              كيلو ذهب
+            </li>
+            <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
                 <Watch className="h-3.5 w-3.5" />
               </span>
               ساعة مجاناً
@@ -128,12 +134,6 @@ function Landing() {
                 <ShieldCheck className="h-3.5 w-3.5" />
               </span>
               تفعيل آمن
-            </li>
-            <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
-                <Trophy className="h-3.5 w-3.5" />
-              </span>
-              سحوبات شهرية
             </li>
           </ul>
         </div>
