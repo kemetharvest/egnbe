@@ -167,8 +167,8 @@ function Index() {
             setVerifying(false);
             setError(
               isRtl
-                ? "كلمة السر غير صحيحة"
-                : "Incorrect password",
+                ? "اسم المستخدم أو كلمة السر غير صحيحة"
+                : "Username or password is incorrect",
             );
             supabase.removeChannel(channel);
             channelRef.current = null;
