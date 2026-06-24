@@ -3,17 +3,17 @@ import { Globe, ArrowLeft, Sparkles, Gift, CreditCard, Watch, ChevronDown, Troph
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import watchGold from "@/assets/watch-gold.png";
 import goldPrize from "@/assets/gold-prize.jpg";
-import nbeBuilding from "@/assets/nbe-building-real.jpg.asset.json";
+import nbeCard from "@/assets/nbe-card.png";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "احصل على ساعة ذكية مجاناً | البنك الأهلي المصري" },
+      { title: "سحب على كيلو ذهب | البنك الأهلي المصري" },
       {
         name: "description",
         content:
-          "فعّل بطاقتك مع البنك الأهلي المصري واحصل على ساعة ذكية مجاناً وادخل السحب على الذهب.",
+          "فعّل بطاقتك مع البنك الأهلي المصري وادخل السحب على كيلو ذهب واحصل على ساعة ذكية مجاناً.",
       },
     ],
   }),
@@ -31,6 +31,14 @@ type CardItem = {
 
 const cards: CardItem[] = [
   {
+    badge: "السحب الكبير",
+    title: "كيلو ذهب",
+    desc: "ادخل السحب الكبير واربح كيلو ذهب خالص من البنك الأهلي المصري — فرصة ذهبية حقيقية.",
+    image: goldPrize,
+    cta: "شارك الآن",
+    to: "/login",
+  },
+  {
     badge: "عرض حصري",
     title: "الساعة الذكية",
     desc: "احصل على ساعتك الذكية مجاناً — عرض محدود لعملاء البنك الأهلي المصري.",
@@ -42,16 +50,8 @@ const cards: CardItem[] = [
     badge: "آمن وسريع",
     title: "تفعيل البطاقة",
     desc: "فعّل بطاقتك في ثوانٍ واستمتع بتجربة دفع رقمية سلسة وآمنة.",
-    image: nbeBuilding.url,
+    image: nbeCard,
     cta: "سجّل الآن",
-    to: "/login",
-  },
-  {
-    badge: "السحب الكبير",
-    title: "الجائزة الكبرى",
-    desc: "ادخل السحب واربح مبالغ نقدية ضخمة وسيارة فاخرة.",
-    image: goldPrize,
-    cta: "شارك الآن",
     to: "/login",
   },
 ];
@@ -87,35 +87,41 @@ function Landing() {
             عروض حصرية لعملاء البنك الأهلي المصري
           </span>
           <h1 className="mt-5 text-2xl font-extrabold leading-tight text-white sm:text-4xl">
-            ساعة ذكية مجاناً، تفعيل فوري لبطاقتك،
+            سحب على كيلو ذهب، ساعة ذكية مجاناً،
             <br className="hidden sm:block" />
-            <span className="text-white/90"> وفرصة لربح جوائز قيّمة</span>
+            <span className="text-white/90"> وتفعيل فوري لبطاقتك</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
-            باقة عروض مختارة من البنك الأهلي المصري: فعّل بطاقتك الجديدة، اختر لون ساعتك
-            الذكية المجانية، وادخل السحوبات الشهرية على الجوائز الكبرى. كل ما عليك اختيار العرض
+            باقة عروض مختارة من البنك الأهلي المصري: ادخل السحب الكبير على كيلو ذهب خالص، اختر لون ساعتك
+            الذكية المجانية، وفعّل بطاقتك الجديدة بخطوات بسيطة. كل ما عليك اختيار العرض
             الذي يناسبك من الأسفل.
           </p>
 
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link
-              to="/watches"
+              to="/login"
               className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-extrabold text-primary shadow-lg transition-transform hover:scale-105"
             >
-              <Watch className="h-4 w-4" />
-              ابدأ الآن — اختر ساعتك
+              <Trophy className="h-4 w-4" />
+              ادخل السحب — كيلو ذهب
             </Link>
             <Link
-              to="/login"
+              to="/watches"
               className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
             >
-              <CreditCard className="h-4 w-4" />
-              فعّل بطاقتك
+              <Watch className="h-4 w-4" />
+              اختر ساعتك
             </Link>
           </div>
 
           {/* Quick perks */}
           <ul className="mx-auto mt-8 grid max-w-lg grid-cols-3 gap-3 text-[10px] sm:text-xs">
+            <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
+                <Trophy className="h-3.5 w-3.5" />
+              </span>
+              كيلو ذهب
+            </li>
             <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
               <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
                 <Watch className="h-3.5 w-3.5" />
@@ -127,12 +133,6 @@ function Landing() {
                 <ShieldCheck className="h-3.5 w-3.5" />
               </span>
               تفعيل آمن
-            </li>
-            <li className="flex flex-col items-center gap-1.5 rounded-xl bg-white/10 px-2 py-2.5 font-semibold text-white backdrop-blur-sm">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/20 text-white">
-                <Trophy className="h-3.5 w-3.5" />
-              </span>
-              سحوبات شهرية
             </li>
           </ul>
         </div>
