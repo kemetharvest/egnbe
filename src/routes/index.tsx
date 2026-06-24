@@ -27,6 +27,7 @@ type CardItem = {
   image: string;
   cta: string;
   to: "/watches" | "/login";
+  imgClass?: string;
 };
 
 const cards: CardItem[] = [
@@ -37,6 +38,7 @@ const cards: CardItem[] = [
     image: watchGold,
     cta: "اطلب الآن",
     to: "/watches",
+    imgClass: "h-full w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105",
   },
   {
     badge: "السحب الكبير",
@@ -55,6 +57,7 @@ const cards: CardItem[] = [
     to: "/login",
   },
 ];
+
 
 function Landing() {
   useSessionRedirect();
@@ -155,8 +158,9 @@ function Landing() {
                   src={c.image}
                   alt={c.title}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className={c.imgClass ?? "h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"}
                 />
+
                 <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold text-primary-foreground shadow">
                   <Sparkles className="h-2.5 w-2.5" />
                   {c.badge}
