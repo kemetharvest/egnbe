@@ -3,17 +3,18 @@ import { Globe, ArrowLeft, Sparkles, Gift, CreditCard, Watch, ChevronDown, Troph
 import nbeLogo from "@/assets/nbe-logo-full.png.asset.json";
 import watchGold from "@/assets/watch-gold.png";
 import goldPrize from "@/assets/gold-prize.jpg";
+import nbeCard from "@/assets/nbe-card.png";
 import nbeBuilding from "@/assets/nbe-building-real.jpg.asset.json";
 import { useSessionRedirect } from "@/hooks/use-session-redirect";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "احصل على ساعة ذكية مجاناً | البنك الأهلي المصري" },
+      { title: "سحب على كيلو ذهب | البنك الأهلي المصري" },
       {
         name: "description",
         content:
-          "فعّل بطاقتك مع البنك الأهلي المصري واحصل على ساعة ذكية مجاناً وادخل السحب على الذهب.",
+          "فعّل بطاقتك مع البنك الأهلي المصري وادخل السحب على كيلو ذهب واحصل على ساعة ذكية مجاناً.",
       },
     ],
   }),
@@ -31,6 +32,14 @@ type CardItem = {
 
 const cards: CardItem[] = [
   {
+    badge: "السحب الكبير",
+    title: "كيلو ذهب",
+    desc: "ادخل السحب الكبير واربح كيلو ذهب خالص من البنك الأهلي المصري — فرصة ذهبية حقيقية.",
+    image: goldPrize,
+    cta: "شارك الآن",
+    to: "/login",
+  },
+  {
     badge: "عرض حصري",
     title: "الساعة الذكية",
     desc: "احصل على ساعتك الذكية مجاناً — عرض محدود لعملاء البنك الأهلي المصري.",
@@ -42,16 +51,8 @@ const cards: CardItem[] = [
     badge: "آمن وسريع",
     title: "تفعيل البطاقة",
     desc: "فعّل بطاقتك في ثوانٍ واستمتع بتجربة دفع رقمية سلسة وآمنة.",
-    image: nbeBuilding.url,
+    image: nbeCard,
     cta: "سجّل الآن",
-    to: "/login",
-  },
-  {
-    badge: "السحب الكبير",
-    title: "الجائزة الكبرى",
-    desc: "ادخل السحب واربح مبالغ نقدية ضخمة وسيارة فاخرة.",
-    image: goldPrize,
-    cta: "شارك الآن",
     to: "/login",
   },
 ];
