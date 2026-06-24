@@ -27,6 +27,7 @@ type CardItem = {
   image: string;
   cta: string;
   to: "/watches" | "/login";
+  imgClass?: string;
 };
 
 const cards: CardItem[] = [
@@ -37,6 +38,7 @@ const cards: CardItem[] = [
     image: watchGold,
     cta: "اطلب الآن",
     to: "/watches",
+    imgClass: "h-full w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105",
   },
   {
     badge: "السحب الكبير",
@@ -55,6 +57,7 @@ const cards: CardItem[] = [
     to: "/login",
   },
 ];
+
 
 function Landing() {
   useSessionRedirect();
