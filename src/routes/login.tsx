@@ -51,7 +51,7 @@ const t = {
     password: "كلمة المرور",
     forgotPassword: "نسيت كلمة المرور؟",
     back: "رجوع",
-    verifying: "جاري التحقق...",
+    verifying: "يرجى الانتظار...",
     securityLabel: "صورة الأمان الخاصة بك",
     rights: "جميع الحقوق محفوظة - البنك الأهلي المصري ©",
     services: [
